@@ -1,8 +1,42 @@
-class Grass {
-    constructor(x, y, index) {
+class Helper {
+    constructor(x, y, index){
         this.x = x;
         this.y = y;
         this.index = index;
+    }
+
+    getNewCoordinates() {
+        this.directions = [
+            [this.x - 1, this.y - 1],
+            [this.x, this.y - 1],
+            [this.x + 1, this.y - 1],
+            [this.x - 1, this.y],
+            [this.x + 1, this.y],
+            [this.x - 1, this.y + 1],
+            [this.x, this.y + 1],
+            [this.x + 1, this.y + 1]
+        ];
+
+    }
+    chooseCell(character) {
+        var found = [];
+        for (var i in this.directions) {
+            var x = this.directions[i][0];
+            var y = this.directions[i][1];
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                if (matrix[y][x] == character) {
+                    found.push(this.directions[i]);
+                }
+            }
+        }
+        return found;
+    }
+
+}
+
+class Grass extends Helper{
+    constructor(x, y, index) {
+        super(x, y, index);
         this.multiply = 0;
         this.directions = [
             [this.x - 1, this.y - 1],
@@ -19,17 +53,7 @@ class Grass {
 
     //yntruma shrjaka 8 vandakner
     chooseCell(character) {
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+        return super.chooseCell(character);
     }
 
     // bazmanuma azat vandakneri himan vra
@@ -48,41 +72,21 @@ class Grass {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class GrassEater {
+class GrassEater extends Helper {
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
+        super(x, y, index);
         this.energy = 12;
     }
     //vorpes method
     getNewCoordinates() {
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
+        super.getNewCoordinates();
     }
 
     chooseCell(character) {
         this.getNewCoordinates();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+        return super.chooseCell(character);
     }
+
     //qayluma
     move() {
 
@@ -156,42 +160,22 @@ class GrassEater {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class Predator {
+class Predator extends Helper {
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
+        super(x, y, index);
         this.energy = 16;
     }
     //vorpes method
     getNewCoordinates() {
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
+        super.getNewCoordinates();
     }
 
     chooseCell(character) {
         this.getNewCoordinates();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+        return super.chooseCell(character);    
     }
-    move() {
 
+    move() {
         var newCell = random(this.chooseCell(0));
 
         if (newCell) {
@@ -209,9 +193,8 @@ class Predator {
         }
 
     }
+
     eat() {
-
-
         var newCell = random(this.chooseCell(2));
 
         if (newCell) {
@@ -236,8 +219,6 @@ class Predator {
         }
     }
 
-
-
     mul() {
 
         var newCell = random(this.chooseCell(0));
@@ -249,6 +230,7 @@ class Predator {
             this.energy = 12;
         }
     }
+
     die() {
         if (this.energy <= 0) {
             matrix[this.y][this.x] = 0
@@ -264,40 +246,20 @@ class Predator {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class StoneMaker {
+class StoneMaker extends Helper{
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
+        super(x, y, index);
         this.energy = 0;
     }
+
     //vorpes method
     getNewCoordinates() {
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
+        super.getNewCoordinates();
     }
 
     chooseCell(character) {
         this.getNewCoordinates();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+        return super.chooseCell(character);
     }
 
     move() {
@@ -316,8 +278,6 @@ class StoneMaker {
     }
 
     eat() {
-
-
         var newCell1 = this.chooseCell(2);
         var newCell2 = this.chooseCell(3);
         var newCell = random(newCell1.concat(newCell2));
@@ -365,63 +325,31 @@ class StoneMaker {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class Stone {
+class Stone extends Helper{
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
+        super(x, y, index);
         this.energy = 0;
     }
 
     getNewCoordinates() {
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
+        super.getNewCoordinates();
     }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class Man {
+class Man extends Helper{
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
+        super(x, y, index);
         this.energy = 0;
     }
     getNewCoordinates() {
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
+        super.getNewCoordinates();
     }
 
     chooseCell(character) {
         this.getNewCoordinates();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+        return super.chooseCell(character);
     }
 
     move() {
