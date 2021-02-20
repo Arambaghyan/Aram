@@ -16,7 +16,7 @@ module.exports = class Predator extends Helper {
     }
 
     move() {
-        var newCell = random(this.chooseCell(0));
+        var newCell = super.random(this.chooseCell(0));
 
         if (newCell) {
             var newX = newCell[0];
@@ -35,7 +35,7 @@ module.exports = class Predator extends Helper {
     }
 
     eat() {
-        var newCell = random(this.chooseCell(2));
+        var newCell = super.random(this.chooseCell(2));
 
         if (newCell) {
             var newX = newCell[0];
@@ -61,7 +61,7 @@ module.exports = class Predator extends Helper {
 
     mul() {
 
-        var newCell = random(this.chooseCell(0));
+        var newCell = super.random(this.chooseCell(0));
 
         if (this.energy >= 15 && newCell) {
             var newpredator = new Predator(newCell[0], newCell[1], this.index);

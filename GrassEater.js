@@ -38,7 +38,7 @@ module.exports = class GrassEater extends Helper {
     }
 
     eat() {
-        var newCell = random(this.chooseCell(1));
+        var newCell = super.random(this.chooseCell(1));
 
         if (newCell) {
             var newX = newCell[0];
@@ -62,7 +62,7 @@ module.exports = class GrassEater extends Helper {
 
     mul() {
 
-        var newCell = random(this.chooseCell(0));
+        var newCell = super.random(this.chooseCell(0));
 
         if (this.energy >= 10 && newCell) {
             var newGrassEater = new GrassEater(newCell[0], newCell[1], this.index);

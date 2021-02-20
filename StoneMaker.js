@@ -17,7 +17,7 @@ module.exports = class StoneMaker extends Helper{
     }
 
     move() {
-        var newCell = random(this.chooseCell(0));
+        var newCell = super.random(this.chooseCell(0));
 
         if (newCell) {
             var newX = newCell[0];
@@ -34,7 +34,7 @@ module.exports = class StoneMaker extends Helper{
     eat() {
         var newCell1 = this.chooseCell(2);
         var newCell2 = this.chooseCell(3);
-        var newCell = random(newCell1.concat(newCell2));
+        var newCell = super.random(newCell1.concat(newCell2));
 
         if (newCell) {
             var newX = newCell[0];
@@ -66,7 +66,7 @@ module.exports = class StoneMaker extends Helper{
     }
 
     mul() {
-        var newCell = random(this.chooseCell(0));
+        var newCell = super.random(this.chooseCell(0));
 
         if (this.energy >= 1 && newCell) {
             var newStone = new Stone(newCell[0], newCell[1], this.index);

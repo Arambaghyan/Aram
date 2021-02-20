@@ -15,7 +15,7 @@ module.exports = class Man extends Helper{
     }
 
     move() {
-        var newCell = random(this.chooseCell(Math.round(random(1))));
+        var newCell = super.random(this.chooseCell(Math.round(random(1))));
 
         if (newCell) {
             var newX = newCell[0];
@@ -37,7 +37,7 @@ module.exports = class Man extends Helper{
     eat() {
 
 
-        var newCell = random(this.chooseCell(5));
+        var newCell = super.random(this.chooseCell(5));
 
         if (newCell) {
             var newX = newCell[0];
@@ -61,7 +61,7 @@ module.exports = class Man extends Helper{
     }
 
     mul() {
-        var newCell = random(this.chooseCell(0));
+        var newCell = super.random(this.chooseCell(0));
 
         if (this.energy >= 2 && newCell) {
             var newGrass = new Grass(newCell[0], newCell[1], this.index);

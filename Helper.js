@@ -31,5 +31,7 @@ module.exports = class Helper {
         }
         return found;
     }
-
+    random(found){
+        return found[Math.floor(Math.random() * found.length)]
+    }
 }
