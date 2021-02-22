@@ -52,12 +52,12 @@ MatrixGenerator(25, 25)
 
 io.sockets.emit('send matrix', matrix)
 
-let grassArr = [];
-let grassEaterArr = [];
-let predatorArr = [];
-let stoneMakerArr = [];
-let stoneArr = [];
-let manArr = [];
+grassArr = [];
+grassEaterArr = [];
+predatorArr = [];
+stoneMakerArr = [];
+stoneArr = [];
+manArr = [];
 
 Grass = require("./Grass")
 GrassEater = require("./GrassEater")
@@ -134,6 +134,7 @@ function game(){
         manArr[i].eat(); 
         manArr[i].mul();
     }
+    io.sockets.emit('send matrix', matrix)
 }
 
 setInterval(game, 1000)

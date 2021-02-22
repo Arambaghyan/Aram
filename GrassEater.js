@@ -19,7 +19,7 @@ module.exports = class GrassEater extends Helper {
     move() {
 
         //yntruma vandak
-        var newCell = random(this.chooseCell(0));
+        var newCell = super.random(this.chooseCell(0));
 
         if (newCell) {
             var newX = newCell[0];

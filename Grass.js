@@ -14,7 +14,6 @@ module.exports = class Grass extends Helper{
             [this.x, this.y + 1],
             [this.x + 1, this.y + 1]
         ];
-
     }
 
     //yntruma shrjaka 8 vandakner

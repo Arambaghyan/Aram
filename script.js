@@ -1,4 +1,4 @@
-var socket = io();
+var Socket = io();
 
 var side = 20;
 

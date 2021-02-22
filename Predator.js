@@ -3,7 +3,7 @@ var Helper = require("./Helper");
 module.exports = class Predator extends Helper {
     constructor(x, y, index) {
         super(x, y, index);
-        this.energy = 16;
+        this.energy = 12;
     }
     //vorpes method
     getNewCoordinates() {

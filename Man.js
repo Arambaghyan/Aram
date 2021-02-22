@@ -15,7 +15,7 @@ module.exports = class Man extends Helper{
     }
 
     move() {
-        var newCell = super.random(this.chooseCell(Math.round(random(1))));
+        var newCell = super.random(this.chooseCell(Math.round(super.random(1))));
 
         if (newCell) {
             var newX = newCell[0];
