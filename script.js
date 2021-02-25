@@ -47,5 +47,5 @@ function nkarel(matrix) {
 setInterval(
     function() {
         Socket.on('send matrix', nkarel)
-    },1000
+    },100
 )
