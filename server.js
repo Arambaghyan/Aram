@@ -58,6 +58,8 @@ predatorArr = [];
 stoneMakerArr = [];
 stoneArr = [];
 manArr = [];
+iceManArr = [];
+iceArr = [];
 
 Grass = require("./Grass")
 GrassEater = require("./GrassEater")
@@ -65,6 +67,8 @@ Predator = require("./Predator")
 StoneMaker = require("./StoneMaker")
 Stone = require("./Stone")
 Man = require("./Man")
+IceMan = require("./IceMan")
+Ice = require("./Ice")
 
 //----
 
@@ -103,6 +107,15 @@ function createObject(matrix){
                 manArr.push(mani);
                 
             }
+            else if (matrix[y][x] == 7) {
+                var im = new IceMan(x,y,7);
+                iceManArr.push(im);
+                
+            }
+            else if (matrix[y][x] == 8) {
+                var i = new Ice(x,y,8);
+                iceArr.push(i);
+            }
         }
     }
     io.sockets.emit('send matrix', matrix)
@@ -134,12 +147,58 @@ function game(){
         manArr[i].eat(); 
         manArr[i].mul();
     }
+    for (var i in iceManArr) {
+        iceManArr[i].move();
+        iceManArr[i].eat(); 
+        iceManArr[i].mul();  
+    }
     io.sockets.emit('send matrix', matrix)
+}
+
+function addEnergy(){
+    var x = Math.floor(Math.random() * matrix[0].length)
+    var y = Math.floor(Math.random() * matrix.length)
+    if(matrix[y][x] == 2){
+        grassEaterArr.energy += 1;
+    }
+    if(matrix[y][x] == 3){
+        predatorArr.energy += 1;
+    }
+    io.sockets.emit('send matrix', matrix);
+}
+
+function removeEnergy(){
+    var x = Math.floor(Math.random() * matrix[0].length)
+    var y = Math.floor(Math.random() * matrix.length)
+    if(matrix[y][x] == 2){
+        grassEaterArr.energy -= 1;
+    }
+    if(matrix[y][x] == 3){
+        predatorArr.energy -= 1;
+    }
+    io.sockets.emit('send matrix', matrix);
 }
 
 setInterval(game, 1000)
 
-io.on('connection', function(){
-    createObject(matrix)
+io.on('connection', function(socket){
+    createObject(matrix);
+    socket.on("add Energy", addEnergy);
+    socket.on("remove Energy", removeEnergy);
 })
+
+var statistics = {};
+
+setInterval(function() {
+    statistics.grass = grassArr.length;
+    statistics.grassEater = grassEaterArr.length;
+    statistics.predator = predatorArr.length;
+    statistics.stoneMaker = stoneMakerArr.length;
+    statistics.stone = stoneArr.length;
+    statistics.man = manArr.length;
+    statistics.iceMan = iceManArr.length;
+    statistics.ice = iceArr.length;
+
+    fs.writeFile("statistics.json", JSON.stringify(statistics), function(){})
+},1000)
 
