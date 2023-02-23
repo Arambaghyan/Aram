@@ -23,7 +23,7 @@ module.exports = class Man extends Helper{
             if (newCell) {
                 matrix[this.y][this.x] = 1;
                 var newGrass = new Grass(this.x, this.y, 1);
-                grassArr.push(newGrass);
+                GrassArr.push(newGrass);
             }
             else {
                 matrix[this.y][this.x] = 0;
@@ -46,9 +46,9 @@ module.exports = class Man extends Helper{
             matrix[this.y][this.x] = 0;
             matrix[newY][newX] = this.index;
 
-            for (var i in stoneArr) {
-                if (newX == stoneArr[i].x && newY == stoneArr[i].y) {
-                    stoneArr.splice(i, 1);
+            for (var i in xotArr) {
+                if (newX == xotArr[i].x && newY == xotArr[i].y) {
+                    xotArr.splice(i, 1);
                     break;
                 }
             }
@@ -65,7 +65,7 @@ module.exports = class Man extends Helper{
 
         if (this.energy >= 2 && newCell) {
             var newGrass = new Grass(newCell[0], newCell[1], this.index);
-            grassArr.push(newGrass);
+            GrassArr.push(newGrass);
             matrix[newCell[1]][newCell[0]] = 1;
             this.energy = 0;
         }

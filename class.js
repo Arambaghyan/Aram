@@ -34,7 +34,7 @@ class Helper {
 
 }
 
-class Grass extends Helper{
+class  extends Helper{
     constructor(x, y, index) {
         super(x, y, index);
         this.multiply = 0;
@@ -62,17 +62,18 @@ class Grass extends Helper{
         var newCell = random(this.chooseCell(0));
         // console.log(newCell, this.multiply);
         if (this.multiply >= 8 && newCell) {
-            var newGrass = new Grass(newCell[0], newCell[1], this.index);
-            grassArr.push(newGrass);
-            matrix[newCell[1]][newCell[0]] = 1;
-            this.multiply = 0;
+            console.log()
+            // var new = new (newCell[0], newCell[1], this.index);
+            // Arr.push(new);
+            // matrix[newCell[1]][newCell[0]] = 1;
+            // this.multiply = 0;
         }
     }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class GrassEater extends Helper {
+class Eater extends Helper {
     constructor(x, y, index) {
         super(x, y, index);
         this.energy = 12;
@@ -119,9 +120,9 @@ class GrassEater extends Helper {
             matrix[this.y][this.x] = 0;
             matrix[newY][newX] = this.index;
 
-            for (var i in grassArr) {
-                if (newX == grassArr[i].x && newY == grassArr[i].y) {
-                    grassArr.splice(i, 1);
+            for (var i in Arr) {
+                if (newX == Arr[i].x && newY == Arr[i].y) {
+                    Arr.splice(i, 1);
                     break;
                 }
             }
@@ -137,8 +138,8 @@ class GrassEater extends Helper {
         var newCell = random(this.chooseCell(0));
 
         if (this.energy >= 10 && newCell) {
-            var newGrassEater = new GrassEater(newCell[0], newCell[1], this.index);
-            grassEaterArr.push(newGrassEater);
+            var newEater = new Eater(newCell[0], newCell[1], this.index);
+            EaterArr.push(newEater);
             matrix[newCell[1]][newCell[0]] = 2;
             this.energy = 8;
         }
@@ -148,9 +149,9 @@ class GrassEater extends Helper {
 
         if (this.energy <= 0) {
             matrix[this.y][this.x] = 0
-            for (var i in grassEaterArr) {
-                if (this.x == grassEaterArr[i].x && this.y == grassEaterArr[i].y) {
-                    grassEaterArr.splice(i, 1)
+            for (var i in EaterArr) {
+                if (this.x == EaterArr[i].x && this.y == EaterArr[i].y) {
+                    EaterArr.splice(i, 1)
                     break;
                 }
             }
@@ -160,7 +161,7 @@ class GrassEater extends Helper {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class Predator extends Helper {
+class Eater extends Helper {
     constructor(x, y, index) {
         super(x, y, index);
         this.energy = 16;
@@ -204,9 +205,9 @@ class Predator extends Helper {
             matrix[this.y][this.x] = 0;
             matrix[newY][newX] = this.index;
 
-            for (var i in grassEaterArr) {
-                if (newX == grassEaterArr[i].x && newY == grassEaterArr[i].y) {
-                    grassEaterArr.splice(i, 1);
+            for (var i in EaterArr) {
+                if (newX == EaterArr[i].x && newY == EaterArr[i].y) {
+                    EaterArr.splice(i, 1);
                     break;
                 }
             }
@@ -224,8 +225,8 @@ class Predator extends Helper {
         var newCell = random(this.chooseCell(0));
 
         if (this.energy >= 15 && newCell) {
-            var newpredator = new Predator(newCell[0], newCell[1], this.index);
-            predatorArr.push(newpredator);
+            var neweater = new Eater(newCell[0], newCell[1], this.index);
+            eaterArr.push(neweater);
             matrix[newCell[1]][newCell[0]] = 3;
             this.energy = 12;
         }
@@ -234,9 +235,9 @@ class Predator extends Helper {
     die() {
         if (this.energy <= 0) {
             matrix[this.y][this.x] = 0
-            for (var i in predatorArr) {
-                if (this.x == predatorArr[i].x && this.y == predatorArr[i].y) {
-                    predatorArr.splice(i, 1)
+            for (var i in eaterArr) {
+                if (this.x == eaterArr[i].x && this.y == eaterArr[i].y) {
+                    eaterArr.splice(i, 1)
                     break;
                 }
             }
@@ -246,7 +247,7 @@ class Predator extends Helper {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class StoneMaker extends Helper{
+class Maker extends Helper{
     constructor(x, y, index) {
         super(x, y, index);
         this.energy = 0;
@@ -289,16 +290,16 @@ class StoneMaker extends Helper{
             matrix[this.y][this.x] = 0;
             matrix[newY][newX] = this.index;
 
-            for (var i in grassEaterArr) {
-                if (newX == grassEaterArr[i].x && newY == grassEaterArr[i].y) {
-                    grassEaterArr.splice(i, 1);
+            for (var i in EaterArr) {
+                if (newX == EaterArr[i].x && newY == EaterArr[i].y) {
+                    EaterArr.splice(i, 1);
                     break;
                 }
             }
 
-            for (var i in predatorArr) {
-                if (newX == predatorArr[i].x && newY == predatorArr[i].y) {
-                    predatorArr.splice(i, 1);
+            for (var i in eaterArr) {
+                if (newX == eaterArr[i].x && newY == eaterArr[i].y) {
+                    eaterArr.splice(i, 1);
                     break;
                 }
             }
@@ -315,17 +316,17 @@ class StoneMaker extends Helper{
         var newCell = random(this.chooseCell(0));
 
         if (this.energy >= 1 && newCell) {
-            var newStone = new Stone(newCell[0], newCell[1], this.index);
-            stoneArr.push(newStone);
+            var newxot = new xot(newCell[0], newCell[1], this.index);
+            xotArr.push(newxot);
             matrix[newCell[1]][newCell[0]] = 5;
             this.energy = 0;
         }
     }
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class Stone extends Helper{
+
+class xot extends Helper{
     constructor(x, y, index) {
         super(x, y, index);
         this.energy = 0;
@@ -336,7 +337,7 @@ class Stone extends Helper{
     }
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 class Man extends Helper{
     constructor(x, y, index) {
@@ -360,8 +361,8 @@ class Man extends Helper{
             var newY = newCell[1];
             if (newCell) {
                 matrix[this.y][this.x] = 1;
-                var newGrass = new Grass(this.x, this.y, 1);
-                grassArr.push(newGrass);
+                var new = new (this.x, this.y, 1);
+                Arr.push(new);
             }
             else {
                 matrix[this.y][this.x] = 0;
@@ -384,9 +385,9 @@ class Man extends Helper{
             matrix[this.y][this.x] = 0;
             matrix[newY][newX] = this.index;
 
-            for (var i in stoneArr) {
-                if (newX == stoneArr[i].x && newY == stoneArr[i].y) {
-                    stoneArr.splice(i, 1);
+            for (var i in xotArr) {
+                if (newX == xotArr[i].x && newY == xotArr[i].y) {
+                    xotArr.splice(i, 1);
                     break;
                 }
             }
@@ -402,12 +403,12 @@ class Man extends Helper{
         var newCell = random(this.chooseCell(0));
 
         if (this.energy >= 2 && newCell) {
-            var newGrass = new Grass(newCell[0], newCell[1], this.index);
-            grassArr.push(newGrass);
+            var new = new (newCell[0], newCell[1], this.index);
+            Arr.push(new);
             matrix[newCell[1]][newCell[0]] = 1;
             this.energy = 0;
         }
     }
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////
+////////

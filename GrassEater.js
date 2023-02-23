@@ -47,9 +47,9 @@ module.exports = class GrassEater extends Helper {
             matrix[this.y][this.x] = 0;
             matrix[newY][newX] = this.index;
 
-            for (var i in grassArr) {
-                if (newX == grassArr[i].x && newY == grassArr[i].y) {
-                    grassArr.splice(i, 1);
+            for (var i in GrassArr) {
+                if (newX == GrassArr[i].x && newY == GrassArr[i].y) {
+                    GrassArr.splice(i, 1);
                     break;
                 }
             }
@@ -76,9 +76,9 @@ module.exports = class GrassEater extends Helper {
 
         if (this.energy <= 0) {
             matrix[this.y][this.x] = 0
-            for (var i in grassEaterArr) {
-                if (this.x == grassEaterArr[i].x && this.y == grassEaterArr[i].y) {
-                    grassEaterArr.splice(i, 1)
+            for (var i in GrassEaterArr) {
+                if (this.x == GrassEaterArr[i].x && this.y == GrassEaterArr[i].y) {
+                    GrassEaterArr.splice(i, 1)
                     break;
                 }
             }

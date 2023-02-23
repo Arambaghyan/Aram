@@ -80,7 +80,7 @@ function winterCall() {
 }
 
 function summer() {
-    document.getElementById("myBody").style.backgroundColor = "yellow";
+    document.getElementById("myBody").style.backgroundColor = "#ffef3b";
     winter = false;
 }
 
