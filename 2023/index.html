@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>MI OR GJANOCUM 2023</title>
 </head>
-<body>
+
+<body id="myBody">
+    <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
     <script src="grass.js"></script>
     <script src="grasseater.js"></script>
@@ -15,5 +18,82 @@
     <script src="predator.js"></script>
     <script src="script.js"></script>
     <script src="kingkong.js"></script>
-</body>
+    <script src="bomb.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+
+    <p id="output" style="font-size: 40px;text-align: center;font-family: Arial;">MI OR GJANOCUM</p>
+
+
+
+
+
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>The Game of Life</title>
+    </head>
+
+    <body>
+        <div id="gridContainer">
+
+        </div>
+
+        <div class="controls" style="text-align: center;transform: translate(0%, -475%);">
+            <button id="start" style="font-size: 25px"><span>Start</span></button>
+            <button id="clear" style="font-size: 25px"><span>Clear</span></button>
+            <button id="random" style="font-size: 25px"><span>Random</span></button>
+            <button onclick="bg()" style="font-size: 25px">BG</button>
+            <button onclick="bomb()" style="font-size: 25px">bomb</button>
+
+        </div>
+
+
+
+
+
+        <div id="container">
+            <canvas id="canvas" width="100" height="100"></canvas>
+        </div>
+
+        <script>
+
+            function summer() {
+                document.getElementById("myBody").style.backgroundColor = "#ffef3b";
+                winter = false;
+            }
+
+
+            function winter() {
+                document.getElementById("myBody").style.backgroundColor = "lightblue";
+                winter = true;
+            }
+
+
+            function bg() {
+                const body = document.getElementById("myBody")
+                if (!body.style.backgroundColor)
+                    body.style.backgroundColor = "yellow"
+                if (body.style.background == "yellow")
+                    body.style.background = "lightblue"
+                else
+                    body.style.background = "yellow"
+            }   
+
+
+
+           
+ 
+
+        
+
+
+
+        </script>
+
+
+
+
+    </body>
+
 </html>
